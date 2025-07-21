@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "9fa2",
+      "fullName": "Holger Andre",
+      "email": "holger.andre@example.com",
+      "phone": "076 672 12 09",
+      "profileImage": "https://randomuser.me/api/portraits/men/80.jpg"
+    },
+    {
+      "id": "813c",
+      "fullName": "Ali Abacı",
+      "email": "ali.abaci@example.com",
+      "phone": "(116)-935-2218",
+      "profileImage": "https://randomuser.me/api/portraits/men/19.jpg"
+    },
+    {
+      "id": "5c0f",
+      "fullName": "Viljami Waisanen",
+      "email": "viljami.waisanen@example.com",
+      "phone": "07-428-577",
+      "profileImage": "https://randomuser.me/api/portraits/men/9.jpg"
+    },
+    {
+      "id": "420f",
+      "fullName": "Anka Vlahović",
+      "email": "anka.vlahovic@example.com",
+      "phone": "026-0788-721",
+      "profileImage": "https://randomuser.me/api/portraits/women/12.jpg"
+    }
+  ]
+}
