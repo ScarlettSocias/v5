@@ -245,4 +245,6 @@ function showToast(message, type = 'primary') {
     toast.className = `toast align-items-center text-bg-${type} border-0`;
     document.getElementById('toastMessage').textContent = message;
     new bootstrap.Toast(toast).show();
+
 }
+

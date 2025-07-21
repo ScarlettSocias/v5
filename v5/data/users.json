@@ -22,11 +22,25 @@
       "profileImage": "https://randomuser.me/api/portraits/men/9.jpg"
     },
     {
-      "id": "420f",
-      "fullName": "Anka Vlahović",
-      "email": "anka.vlahovic@example.com",
-      "phone": "026-0788-721",
-      "profileImage": "https://randomuser.me/api/portraits/women/12.jpg"
+      "id": "ce05",
+      "fullName": "Filippa Hansen",
+      "email": "filippa.hansen@example.com",
+      "phone": "07246450",
+      "profileImage": "https://randomuser.me/api/portraits/women/90.jpg"
+    },
+    {
+      "id": "7c98",
+      "fullName": "Rayaan Naik",
+      "email": "rayaan.naik@example.com",
+      "phone": "7800029410",
+      "profileImage": "https://randomuser.me/api/portraits/men/16.jpg"
+    },
+    {
+      "id": "bd3b",
+      "fullName": "Elaine Hamilton",
+      "email": "elaine.hamilton@example.com",
+      "phone": "(316) 344-8505",
+      "profileImage": "https://randomuser.me/api/portraits/women/20.jpg"
     }
   ]
 }
