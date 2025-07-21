@@ -10,20 +10,62 @@ const sortAscBtn = document.getElementById('sortAsc');
 const sortDescBtn = document.getElementById('sortDesc');
 
 // =========================
+// PAGINACIÓN SIMPLE
+// =========================
+let currentPage = 1;
+const USERS_PER_PAGE = 5;
+let lastFiltered = null; // Guarda el último filtro aplicado
+
+const prevPageBtn = document.getElementById('prevPage');
+const nextPageBtn = document.getElementById('nextPage');
+const paginationControls = document.getElementById('paginationControls');
+
+function renderUsersPaginated(list = null) {
+    const usersToShow = list || users;
+    lastFiltered = usersToShow;
+    const totalPages = Math.ceil(usersToShow.length / USERS_PER_PAGE) || 1;
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+    const start = (currentPage - 1) * USERS_PER_PAGE;
+    const end = start + USERS_PER_PAGE;
+    const paginatedUsers = usersToShow.slice(start, end);
+    renderUsers(paginatedUsers);
+    if (usersToShow.length > USERS_PER_PAGE) {
+        paginationControls.style.display = 'flex';
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === totalPages;
+    } else {
+        paginationControls.style.display = 'none';
+    }
+}
+
+prevPageBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        renderUsersPaginated(lastFiltered);
+    }
+});
+nextPageBtn.addEventListener('click', () => {
+    const usersToShow = lastFiltered || users;
+    const totalPages = Math.ceil(usersToShow.length / USERS_PER_PAGE) || 1;
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderUsersPaginated(usersToShow);
+    }
+});
+
+// =========================
 // BUSCADOR
 // =========================
 // Escuchamos el evento "input" para capturar lo que el usuario escribe.
 searchInput.addEventListener('input', () => {
-    const term = searchInput.value.toLowerCase(); // Convertimos a minúsculas para búsqueda insensible a mayúsculas.
-
-    // Usamos "filter" porque queremos obtener solo los usuarios cuyo nombre o email coincidan con el término.
+    currentPage = 1;
+    const term = searchInput.value.toLowerCase();
     const filtered = users.filter(u =>
         u.fullName.toLowerCase().includes(term) ||
         u.email.toLowerCase().includes(term)
     );
-
-    // Mostramos solo los usuarios filtrados.
-    renderUsers(filtered);
+    renderUsersPaginated(filtered);
 });
 
 // =========================
@@ -32,16 +74,26 @@ searchInput.addEventListener('input', () => {
 
 // Botón para ordenar de A-Z por nombre
 sortAscBtn.addEventListener('click', () => {
-    // Usamos "sort" para ordenar el array global users directamente.
     users.sort((a, b) => a.fullName.localeCompare(b.fullName));
-    renderUsers();
+    currentPage = 1;
+    renderUsersPaginated(lastFiltered || users);
 });
 
 // Botón para ordenar de Z-A por nombre
 sortDescBtn.addEventListener('click', () => {
     users.sort((a, b) => b.fullName.localeCompare(a.fullName));
-    renderUsers();
+    currentPage = 1;
+    renderUsersPaginated(lastFiltered || users);
 });
+
+// =========================
+// RENDER INICIAL
+// =========================
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => renderUsersPaginated(), 500); // Espera a que users se cargue
+});
+
+
 
 /*
 Función tradicional
